@@ -146,3 +146,31 @@ function updateStats(data) {
     document.getElementById('closed-count').innerText = closed;
 }
 
+
+// Search Logic
+
+async function handleSearch() {
+    const query = document.getElementById('search-input').value;
+    if(!query) return loadAllIssues();
+
+
+    toggleLoader(true);
+    try {
+        const res = await fetch(`${API_BASE}/issues/search?q=${query}`);
+
+        const result = await res.json();
+
+        const searchResults = Array.isArray(result) ? result : (result.data || []);
+
+        renderCards(searchResults);
+        updateStats(searchResults);
+
+    } catch (err) {
+        console.error("Search failed", err);
+        
+    } finally {
+
+        toggleLoader(false);
+    }
+}
+
