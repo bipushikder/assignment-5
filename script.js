@@ -174,3 +174,59 @@ async function handleSearch() {
     }
 }
 
+
+// 6. Modal
+
+
+async function openModal(id) {
+    const content = document.getElementById('modal-content');
+    content.innerHTML = `<div class="flex justify-center py-10"><span class="loading loading-spinner loading-md"></span></div>`;
+    document.getElementById('issue_modal').showModal();
+
+    try {
+        const res = await fetch(`${API_BASE}/issue/${id}`);
+        const issue = await res.json();
+        
+        content.innerHTML = `
+            <div class="flex items-center gap-2 mb-2">
+
+                <span class="badge badge-outline text-xs capitalize">${issue.priority}</span>
+                <span class="text-xs text-gray-400">${issue.label}</span>
+
+            </div>
+
+            <h2 class="text-3xl font-black text-gray-800 mb-4">${issue.title}</h2>
+
+            <div class="grid grid-cols-2 gap-6 p-4 bg-gray-50 rounded-xl mb-6">
+
+                <div><p class="text-[10px] text-gray-400 uppercase font-bold">Author</p><p class="font-bold text-gray-700">${issue.author}</p></div>
+
+                <div><p class="text-[10px] text-gray-400 uppercase font-bold">Status</p><p class="font-bold text-gray-700 capitalize">${issue.status}</p></div>
+
+                <div><p class="text-[10px] text-gray-400 uppercase font-bold">Created Date</p><p class="font-bold text-gray-700">${new Date(issue.createdAt).toLocaleString()}</p></div>
+
+
+                <div><p class="text-[10px] text-gray-400 uppercase font-bold">ID</p><p class="font-mono text-[10px] text-blue-600">${issue._id}</p></div>
+
+            </div>
+
+            <div class="space-y-2">
+
+                <p class="text-[10px] text-gray-400 uppercase font-bold">Full Description</p>
+                <p class="text-gray-600 leading-relaxed">${issue.description}</p>
+                
+            </div>
+        `;
+    } catch (err) {
+        content.innerHTML = `<p class="text-error">Error loading details.</p>`;
+    }
+}
+
+
+
+// UI Helper
+function toggleLoader(show) {
+    document.getElementById('loader').classList.toggle('hidden', !show);
+    document.getElementById('issues-container').classList.toggle('hidden', show);
+}
+
