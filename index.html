@@ -70,7 +70,7 @@
      <!-- navbar -->
 
     <div id="main-page" class="hidden">
-        <nav class="navbar bg-white border-b px-4 md:px-12 h-20 shadow-sm sticky top-0 z-50">
+        <nav class="navbar bg-[#F8FAFC] border-b px-4 md:px-12 h-20 shadow-sm sticky top-0 z-50">
             <div class="flex-2">
 
                 <div class="flex items-center">
@@ -84,7 +84,7 @@
                 <div class="md: join gap-3">
 
                     <div class="relative">
-                         <span class="absolute left-2 top-2 text-gray-400">
+                         <span class="absolute left-2 top-2 text-[#64748B] ">
                          <i class="fa fa-search"></i>
                         </span>
                          <input id="search-input" type="text" placeholder="Search issues..." 
@@ -95,6 +95,73 @@
                 </div>
             </div>
         </nav>
+
+        
+        <!-- all,open and closed tab  -->
+
+        <main class="max-w-7xl mx-auto p-4 md:p-10">
+
+            <div class="flex flex-col md:flex-row justify-between items-center mb-5 gap-3 bg-[#F8FAFC]  p-5 rounded-xl border border-gray-100 shadow-sm">
+
+                <div class="flex flex-wrap items-center gap-6">
+
+                    <div role="tablist" class="tabs tabs-boxed bg-gray-100 p-1">
+
+                        <a id="tab-all" role="tab" class="tab tab-active bg-[#4A00FF]  text-[#64748B]  font-bold px-6" onclick="filterIssues('all', this)">All</a>
+
+                        <a id="tab-open" role="tab" class="tab font-semibold px-6" onclick="filterIssues('open', this)">Open</a>
+
+                        <a id="tab-closed" role="tab" class="tab font-semibold px-6" onclick="filterIssues('closed', this)">Closed</a>
+
+                    </div>
+                </div>
+
+            </div>
+</main>            
+
+
+
+                        <!-- issue count  -->
+
+          <section class="max-w-7xl mx-auto p-4 md:p-10 ">
+
+        
+             <div class="flex flex-col md:flex-row justify-between items-center mb-5 gap-3 bg-[#F8FAFC]  p-5 rounded-xl border border-gray-100 shadow-sm">
+
+                    <div class="flex items-center gap-2 text-[#1F2937] ">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#4A00FF] " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+                        <img src="./images/Aperture.png" alt="">
+                        <div>
+                            <span class="font-bold text-sm"> <span id="current-count" class="text-[#1F2937] ">0</span> Issues</span>
+                        <p class="flex-none text-[#64748B]">Track and manage your project issues</p>
+                        </div>
+                        
+                    </div>
+
+    
+
+                <div class="flex gap-3 items-center border-l pl-6 border-[#F8FAFC]">
+                    <div class="flex items-center gap-2">
+
+                        <div class="w-3 h-3 rounded-full bg-[#00A96E] animate-pulse"></div>
+                        <span class="text-sm font-bold text-[#64748B]">Open <span id="open-count"></span></span>
+                    </div>
+
+
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-[#A855F7]"></div>
+                        <span class="text-sm font-bold text-[#64748B]">Closed <span id="closed-count"></span></span>
+                    </div>
+                </div>
+            
+            </div>
+
+        </section>                
+
+
+
+        
 
 
 
