@@ -109,3 +109,40 @@ function renderCards(data) {
         container.appendChild(card);
     });
 }
+
+
+
+// Filtering 
+
+
+function filterIssues(type, btn) {
+    
+
+    document.querySelectorAll('.tab').forEach(t => {
+        t.classList.remove('tab-active', 'bg-blue-600', 'text-white');
+    });
+    btn.classList.add('tab-active', 'bg-blue-600', 'text-white');
+
+    
+    let filtered;
+    if(type === 'all') {
+        filtered = allIssues;
+    } else {
+        filtered = allIssues.filter(i => i.status?.toLowerCase() === type);
+    }
+
+
+    renderCards(filtered);
+    document.getElementById('current-count').innerText = filtered.length;
+}
+
+function updateStats(data) {
+    const open = data.filter(i => i.status?.toLowerCase() === 'open').length;
+    const closed = data.filter(i => i.status?.toLowerCase() === 'closed').length;
+    
+
+    document.getElementById('current-count').innerText = data.length;
+    document.getElementById('open-count').innerText = open;
+    document.getElementById('closed-count').innerText = closed;
+}
+
